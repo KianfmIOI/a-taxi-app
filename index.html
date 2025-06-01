@@ -36,7 +36,7 @@
       <div>
         <a href=""><button class="logo">hey!</button></a>
       </div>
-      <div class="search">
+      <div class="search" style="display: none">
         <input
           type="text"
           id="searchBar"
@@ -47,62 +47,81 @@
           class="btn text-center d-flex flex-center justify-content-space-around"
           id="searchBut"
         >
-          <img src="./search.png" alt="" />
+          <img src="./pics/search.png" alt="" />
         </button>
       </div>
       <div class="user">
         <div id="username">kian</div>
         <div>
           <a href=""
-            ><img src="./Untitled.png" alt="user-img" id="user-img"
+            ><img src="./pics/Untitled.png" alt="user-img" id="user-img"
           /></a>
         </div>
       </div>
     </nav>
     <div class="space"></div>
     <div>
-      <button class="btn" id="begin" onclick="fadeButton()">
-        <img src="./centerMe.png" alt="" />
-      </button>
-      <div id="map-container">
-        <div id="map"></div>
+      <div class="col" id="map-container">
+        <button class="btn" id="begin" onclick="fadeButton()">
+          <img src="./pics/centerMe.png" alt="" />
+        </button>
+        <div class="col-12" id="map"></div>
       </div>
     </div>
     <div style="padding: 20px; text-align: center">
       <h2 style="color: #c0c0c8">Choose an Account</h2>
-      <button class="btn" id="openAll">Open All</button>
+      <button class="btn" id="openAll" onclick="adminLogin()">Open All</button>
       <div
         id="accountsGrid"
         style="
           display: grid;
           grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-          gap: 15px;
+          gap: 5px;
           margin-top: 20px;
         "
       >
-        <button
-          class="btn account-btn"
-          onclick="openAccount('https://example.com/account1')"
-        >
+        <button class="btn account-btn" onclick="showSignup()">
           Account 1
         </button>
-        <button
-          class="btn account-btn"
-          onclick="openAccount('https://example.com/account2')"
-        >
+        <button class="btn account-btn" onclick="showSignup()">
           Account 2
         </button>
-        <button
-          class="btn account-btn"
-          onclick="openAccount('https://example.com/account3')"
-        >
+        <button class="btn account-btn" onclick="showSignup()">
           Account 3
         </button>
       </div>
     </div>
     <div class="container mt-3">
-      <h1 class="text-center" id="login/sign">Login</h1>
-      <form class="w-50 mx-auto" id="login-form">
+      <form class="w-50 mx-auto" id="admin-login-form" style="display: none">
+        <h1 class="text-center" id="login/sign">Login</h1>
+        <div class="mb-3">
+          <label for="username-input" class="form-label">Username</label>
+          <input
+            type="text"
+            class="form-control"
+            id="username-input"
+            placeholder="Username"
+            name="username"
+            required
+          />
+        </div>
+        <div class="mb-3">
+          <label for="password-input" class="form-label">Password</label>
+          <input
+            type="password"
+            class="form-control"
+            id="password-input"
+            placeholder="Password"
+            name="password"
+            required
+          />
+        </div>
+        <button type="submit" class="btn btn-primary w-100">Login</button>
+      </form>
+    </div>
+    <div class="container mt-3">
+      <form class="w-50 mx-auto" id="login-form" style="display: none">
+        <h1 class="text-center" id="login/sign">Login</h1>
         <div class="mb-3">
           <label for="username-input" class="form-label">Username</label>
           <input
@@ -131,7 +150,8 @@
           <strong class="strong" onclick="showSignup()"> click here</strong>
         </p>
       </form>
-      <form class="w-50 mx-auto" id="signup-form">
+      <form class="w-50 mx-auto" id="signup-form" style="display: none">
+        <h1 class="text-center" id="login/sign">Signup</h1>
         <div class="mb-3">
           <label for="username-input" class="form-label">Username</label>
           <input
@@ -179,48 +199,51 @@
             required
           />
         </div>
-        <button type="submit" class="btn btn-primary w-100">Login</button>
+        <button type="submit" class="btn btn-primary w-100">Sign in</button>
         <p class="mt-3 text-center">
           already have an account?
           <strong class="strong" onclick="showLogin()"> click here</strong>
         </p>
       </form>
     </div>
-
+    <div class="row bg-dark mt-3 py-3" id="footer">
+      <div class="row text-center text-white">
+        <p class="display-7">a website by kian ghaffarian and omid hamidian</p>
+        <small class="text-white-30"> thanks to mr.mahmoodzadeh</small>
+      </div>
+    </div>
     <script>
       function showSignup() {
+        document.getElementById("admin-login-form").style.display = "none";
         document.getElementById("login-form").style.display = "none";
         document.getElementById("signup-form").style.display = "block";
         document.getElementById("login/sign").innerText = "Sign up";
+        window.scrollTo(0, document.body.scrollHeight);
       }
       function showLogin() {
+        document.getElementById("admin-login-form").style.display = "none";
         document.getElementById("signup-form").style.display = "none";
         document.getElementById("login-form").style.display = "block";
         document.getElementById("login/sign").innerText = "Login";
+        window.scrollTo(0, document.body.scrollHeight);
       }
-      function openAccount(url) {
-        window.open(url, "_blank");
+      function adminLogin() {
+        document.getElementById("login-form").style.display = "none";
+        document.getElementById("signup-form").style.display = "none";
+        document.getElementById("admin-login-form").style.display = "block";
+        document.getElementById("login/sign").innerText = "Admin Login";
+        window.scrollTo(0, document.body.scrollHeight);
       }
-
-      document.getElementById("openAll").addEventListener("click", () => {
-        const urls = [
-          "https://example.com/account1",
-          "https://example.com/account2",
-          "https://example.com/account3",
-          // Add more account URLs here
-        ];
-        urls.forEach((url) => window.open(url, "_blank"));
-      });
     </script>
 
     <script>
       let locPopUp;
 
       function fadeButton() {
+        document.getElementById("begin").style.top = "75%";
         document.getElementById("begin").style.left = "90%";
-        document.getElementById("begin").style.top = "90%";
         document.getElementById("map-container").style.display = "block";
-        document.getElementById("map").style.height = "800px";
+        document.getElementById("map").style.height = "75vh";
 
         navigator.geolocation.getCurrentPosition(
           (position) => {
@@ -248,10 +271,81 @@
       map.setView([36.2972, 59.6067], 15);
       let marker = L.marker([36.2972, 59.6067]);
       marker.bindPopup(locPopUp).openPopup();
-      function onMapClick(e) {
-        marker.setLatLng(e.latlng).bindPopup(locPopUp).openPopup();
+    </script>
+
+    <script>
+      let loggedInUser = null;
+
+      async function loadUsers() {
+        const res = await fetch("Users.json");
+        return await res.json();
       }
-      map.on("click", onMapClick);
+
+      function saveLocationForUser(username, lat, lng) {
+        console.log(`Saving location for ${username}: (${lat}, ${lng})`);
+        // Needs backend to write this back to Users.json
+      }
+
+      async function handleLogin(event, isAdmin = false) {
+        event.preventDefault();
+
+        const username = document.querySelector("#username-input").value.trim();
+        const password = document.querySelector("#password-input").value.trim();
+
+        const users = await loadUsers();
+
+        const userFound = users.find((user) => {
+          const keys = Object.keys(user);
+          const uname = user[keys.find((k) => k.includes("username"))];
+          const pass = user[keys.find((k) => k.includes("password"))];
+          return uname === username && pass === password;
+        });
+
+        if (isAdmin) {
+          if (username === "admin" && password === "admin123") {
+            alert("Admin logged in!");
+            showAllUserLocations(users);
+          } else {
+            alert("Invalid admin credentials");
+          }
+        } else {
+          if (userFound) {
+            loggedInUser = username;
+            navigator.geolocation.getCurrentPosition((position) => {
+              const { latitude, longitude } = position.coords;
+              saveLocationForUser(username, latitude, longitude);
+              marker.setLatLng([latitude, longitude]).addTo(map);
+              map.setView([latitude, longitude], 15);
+              marker.bindPopup("You are here").openPopup();
+            });
+            alert(`Welcome, ${username}!`);
+          } else {
+            alert("User not found or wrong password");
+          }
+        }
+      }
+
+      function showAllUserLocations(users) {
+        users.forEach((user) => {
+          const uname =
+            user[Object.keys(user).find((k) => k.includes("username"))];
+          const locKey = Object.keys(user).find((k) => k.includes("location"));
+          const location = user[locKey];
+
+          if (location && location.includes(",")) {
+            const [lat, lng] = location.split(",").map(Number);
+            L.marker([lat, lng]).addTo(map).bindPopup(`${uname}'s location`);
+          }
+        });
+      }
+
+      // Attach submit handlers
+      document
+        .querySelector("#login-form")
+        ?.addEventListener("submit", (e) => handleLogin(e));
+      document
+        .querySelector("#admin-login-form")
+        ?.addEventListener("submit", (e) => handleLogin(e, true));
     </script>
   </body>
 </html>
