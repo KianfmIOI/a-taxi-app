@@ -212,6 +212,10 @@
         <small class="text-white-30"> thanks to mr.mahmoodzadeh</small>
       </div>
     </div>
+
+    <img src="./pics/doom.png" alt="" class="music-image" id="audioImage" />
+    <audio id="myAudio" src="./doom.mp3"></audio>
+
     <script>
       function showSignup() {
         document.getElementById("admin-login-form").style.display = "none";
@@ -274,78 +278,25 @@
     </script>
 
     <script>
-      let loggedInUser = null;
+      const audio = document.getElementById("myAudio");
+      const image = document.getElementById("audioImage");
 
-      async function loadUsers() {
-        const res = await fetch("Users.json");
-        return await res.json();
-      }
+      let isPlaying = false;
 
-      function saveLocationForUser(username, lat, lng) {
-        console.log(`Saving location for ${username}: (${lat}, ${lng})`);
-        // Needs backend to write this back to Users.json
-      }
-
-      async function handleLogin(event, isAdmin = false) {
-        event.preventDefault();
-
-        const username = document.querySelector("#username-input").value.trim();
-        const password = document.querySelector("#password-input").value.trim();
-
-        const users = await loadUsers();
-
-        const userFound = users.find((user) => {
-          const keys = Object.keys(user);
-          const uname = user[keys.find((k) => k.includes("username"))];
-          const pass = user[keys.find((k) => k.includes("password"))];
-          return uname === username && pass === password;
-        });
-
-        if (isAdmin) {
-          if (username === "admin" && password === "admin123") {
-            alert("Admin logged in!");
-            showAllUserLocations(users);
-          } else {
-            alert("Invalid admin credentials");
-          }
+      image.addEventListener("click", () => {
+        if (!isPlaying) {
+          audio.play();
         } else {
-          if (userFound) {
-            loggedInUser = username;
-            navigator.geolocation.getCurrentPosition((position) => {
-              const { latitude, longitude } = position.coords;
-              saveLocationForUser(username, latitude, longitude);
-              marker.setLatLng([latitude, longitude]).addTo(map);
-              map.setView([latitude, longitude], 15);
-              marker.bindPopup("You are here").openPopup();
-            });
-            alert(`Welcome, ${username}!`);
-          } else {
-            alert("User not found or wrong password");
-          }
+          audio.pause();
+          audio.currentTime = 0; 
         }
-      }
+        isPlaying = !isPlaying;
+      });
 
-      function showAllUserLocations(users) {
-        users.forEach((user) => {
-          const uname =
-            user[Object.keys(user).find((k) => k.includes("username"))];
-          const locKey = Object.keys(user).find((k) => k.includes("location"));
-          const location = user[locKey];
-
-          if (location && location.includes(",")) {
-            const [lat, lng] = location.split(",").map(Number);
-            L.marker([lat, lng]).addTo(map).bindPopup(`${uname}'s location`);
-          }
-        });
-      }
-
-      // Attach submit handlers
-      document
-        .querySelector("#login-form")
-        ?.addEventListener("submit", (e) => handleLogin(e));
-      document
-        .querySelector("#admin-login-form")
-        ?.addEventListener("submit", (e) => handleLogin(e, true));
+      // Optional: update isPlaying if audio ends
+      audio.addEventListener("ended", () => {
+        isPlaying = false;
+      });
     </script>
   </body>
 </html>

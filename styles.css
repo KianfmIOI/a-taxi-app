@@ -93,7 +93,6 @@ input {
   border-radius: 50%;
 }
 #map-container {
-  position: relative;
   margin: 10px;
   display: flex;
   align-items: center;
@@ -157,4 +156,32 @@ input {
   color: white;
   border: none;
   border-radius: 5px;
+}
+.background-music {
+  background-color: #0d6efd;
+  position: absolute;
+  top: 90%;
+  right: 20%;
+}
+.music-image {
+  cursor: pointer;
+  position: absolute;
+  top: 90%;
+  right: 10%;
+
+  animation: float 3s ease infinite;
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-20px);
+  }
+
+  100% {
+    transform: translateY(0);
+  }
 }
