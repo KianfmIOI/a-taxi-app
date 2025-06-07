@@ -31,7 +31,7 @@
     ></script>
     <link rel="stylesheet" href="./styles.css" />
   </head>
-  <body onload="getLocation()">
+  <body>
     <nav>
       <div>
         <a href=""><button class="logo">hey!</button></a>
@@ -288,7 +288,7 @@
           audio.play();
         } else {
           audio.pause();
-          audio.currentTime = 0; 
+          audio.currentTime = 0;
         }
         isPlaying = !isPlaying;
       });
@@ -297,6 +297,62 @@
       audio.addEventListener("ended", () => {
         isPlaying = false;
       });
+    </script>
+
+    <script>
+      document
+        .getElementById("signup-form")
+        .addEventListener("submit", async function (e) {
+          e.preventDefault();
+
+          const username = document.getElementById("username-input").value;
+          const email = document.getElementById("email-input").value;
+          const password = document.getElementById("password-input").value;
+
+          try {
+            const response = await fetch("http://127.0.0.1:8000/users", {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({ username, email, password }),
+            });
+
+            if (response.ok) {
+              alert("Signup successful!");
+            } else {
+              alert("Signup failed!");
+            }
+          } catch (err) {
+            alert("Error: " + err.message);
+          }
+        });
+    </script>
+    <script>
+      document
+        .getElementById("login-form")
+        .addEventListener("submit", async function (e) {
+          e.preventDefault();
+
+          const username = document.getElementById("login-username").value;
+          const password = document.getElementById("login-password").value;
+
+          try {
+            const res = await fetch("http://127.0.0.1:8000/login", {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({ username, password }),
+            });
+
+            const data = await res.json();
+
+            if (res.ok) {
+              alert("✅ " + data.message);
+            } else {
+              alert("❌ " + data.error);
+            }
+          } catch (err) {
+            alert("Error: " + err.message);
+          }
+        });
     </script>
   </body>
 </html>
