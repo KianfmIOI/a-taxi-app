@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>hey taxi!</title>
+    <title>hey taxi! Car Tracker</title>
 
     <link
       rel="stylesheet"
@@ -32,28 +32,15 @@
     <link rel="stylesheet" href="./styles.css" />
   </head>
   <body>
-    <nav>
-      <div>
+    <nav class="col p-2 g-3 navbar">
+      <div class="col-2">
         <a href=""><button class="logo">hey!</button></a>
       </div>
-      <div class="search" style="display: none">
-        <input
-          type="text"
-          id="searchBar"
-          placeholder="..."
-          onclick="resizeBar()"
-        />
-        <button
-          class="btn text-center d-flex flex-center justify-content-space-around"
-          id="searchBut"
-        >
-          <img src="./pics/search.png" alt="" />
-        </button>
-      </div>
-      <div class="user">
-        <div id="username">kian</div>
+
+      <div class="col user col-2">
+        <div class="p text-white user-username">Car Tracker</div>
         <div>
-          <a href=""
+          <a href="#"
             ><img src="./pics/Untitled.png" alt="user-img" id="user-img"
           /></a>
         </div>
@@ -62,154 +49,19 @@
     <div class="space"></div>
     <div>
       <div class="col" id="map-container">
-        <button class="btn" id="begin" onclick="fadeButton()">
-          <img src="./pics/centerMe.png" alt="" />
-        </button>
         <div class="col-12" id="map"></div>
       </div>
     </div>
-    <div style="padding: 20px; text-align: center">
-      <h2 style="color: #c0c0c8">Choose an Account</h2>
-      <button class="btn" id="openAll" onclick="adminLogin()">Open All</button>
-      <div
-        id="accountsGrid"
-        style="
-          display: grid;
-          grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-          gap: 5px;
-          margin-top: 20px;
-        "
-      >
-        <button class="btn account-btn" onclick="showSignup()">
-          Account 1
-        </button>
-        <button class="btn account-btn" onclick="showSignup()">
-          Account 2
-        </button>
-        <button class="btn account-btn" onclick="showSignup()">
-          Account 3
-        </button>
-      </div>
+    <div class="location-list-container">
+      <h2>Recent Visited Locations</h2>
+      <ul id="visitedLocationsList">
+        <li>Loading locations...</li>
+      </ul>
     </div>
-    <div class="container mt-3">
-      <form class="w-50 mx-auto" id="admin-login-form" style="display: none">
-        <h1 class="text-center" id="login/sign">Login</h1>
-        <div class="mb-3">
-          <label for="username-input" class="form-label">Username</label>
-          <input
-            type="text"
-            class="form-control"
-            id="username-input"
-            placeholder="Username"
-            name="username"
-            required
-          />
-        </div>
-        <div class="mb-3">
-          <label for="password-input" class="form-label">Password</label>
-          <input
-            type="password"
-            class="form-control"
-            id="password-input"
-            placeholder="Password"
-            name="password"
-            required
-          />
-        </div>
-        <button type="submit" class="btn btn-primary w-100">Login</button>
-      </form>
-    </div>
-    <div class="container mt-3">
-      <form class="w-50 mx-auto" id="login-form" style="display: none">
-        <h1 class="text-center" id="login/sign">Login</h1>
-        <div class="mb-3">
-          <label for="username-input" class="form-label">Username</label>
-          <input
-            type="text"
-            class="form-control"
-            id="username-input"
-            placeholder="Username"
-            name="username"
-            required
-          />
-        </div>
-        <div class="mb-3">
-          <label for="password-input" class="form-label">Password</label>
-          <input
-            type="password"
-            class="form-control"
-            id="password-input"
-            placeholder="Password"
-            name="password"
-            required
-          />
-        </div>
-        <button type="submit" class="btn btn-primary w-100">Login</button>
-        <p class="mt-3 text-center">
-          Don't have an account?
-          <strong class="strong" onclick="showSignup()"> click here</strong>
-        </p>
-      </form>
-      <form class="w-50 mx-auto" id="signup-form" style="display: none">
-        <h1 class="text-center" id="login/sign">Signup</h1>
-        <div class="mb-3">
-          <label for="username-input" class="form-label">Username</label>
-          <input
-            type="text"
-            class="form-control"
-            id="username-input"
-            placeholder="Username"
-            name="username"
-            required
-          />
-        </div>
-        <div class="mb-3">
-          <label for="email-input" class="form-label">email</label>
-          <input
-            type="email"
-            class="form-control"
-            id="email-input"
-            placeholder="email"
-            name="email"
-            required
-          />
-        </div>
-        <div class="mb-3">
-          <label for="password-input" class="form-label">Password</label>
-          <input
-            type="password"
-            class="form-control"
-            id="password-input"
-            placeholder="Password"
-            name="password"
-            required
-          />
-        </div>
-
-        <div class="mb-3">
-          <label for="repeat-password-input" class="form-label"
-            >repeat password</label
-          >
-          <input
-            type="repeat-password"
-            class="form-control"
-            id="repeat-password-input"
-            placeholder="repeat-password"
-            name="repeat-password"
-            required
-          />
-        </div>
-        <button type="submit" class="btn btn-primary w-100">Sign in</button>
-        <p class="mt-3 text-center">
-          already have an account?
-          <strong class="strong" onclick="showLogin()"> click here</strong>
-        </p>
-      </form>
-    </div>
-    <div class="row bg-dark mt-3 py-3" id="footer">
+    <div class="row footer bg-dark mt-3 py-3 border-round" id="footer">
       <div class="row text-center text-white">
         <p class="display-7">a website by kian ghaffarian and omid hamidian</p>
-        <small class="text-white-30"> thanks to mr.mahmoodzadeh</small>
+        <small class="text-white-30"> special thanks to mr.mahmoodzadeh</small>
       </div>
     </div>
 
@@ -217,67 +69,156 @@
     <audio id="myAudio" src="./doom.mp3"></audio>
 
     <script>
-      function showSignup() {
-        document.getElementById("admin-login-form").style.display = "none";
-        document.getElementById("login-form").style.display = "none";
-        document.getElementById("signup-form").style.display = "block";
-        document.getElementById("login/sign").innerText = "Sign up";
-        window.scrollTo(0, document.body.scrollHeight);
-      }
-      function showLogin() {
-        document.getElementById("admin-login-form").style.display = "none";
-        document.getElementById("signup-form").style.display = "none";
-        document.getElementById("login-form").style.display = "block";
-        document.getElementById("login/sign").innerText = "Login";
-        window.scrollTo(0, document.body.scrollHeight);
-      }
-      function adminLogin() {
-        document.getElementById("login-form").style.display = "none";
-        document.getElementById("signup-form").style.display = "none";
-        document.getElementById("admin-login-form").style.display = "block";
-        document.getElementById("login/sign").innerText = "Admin Login";
-        window.scrollTo(0, document.body.scrollHeight);
-      }
-    </script>
+      let map;
+      let carMarker;
+      let polyline;
+      // Default initial view (Imam Reza Holy Shrine, Mashhad)
+      let initialMapCenter = [36.2972, 59.6067];
 
-    <script>
-      let locPopUp;
+      // Initialize the map
+      map = L.map("map").setView(initialMapCenter, 15);
 
-      function fadeButton() {
-        document.getElementById("begin").style.top = "75%";
-        document.getElementById("begin").style.left = "90%";
-        document.getElementById("map-container").style.display = "block";
-        document.getElementById("map").style.height = "75vh";
-
-        navigator.geolocation.getCurrentPosition(
-          (position) => {
-            const lat = position.coords.latitude;
-            const lng = position.coords.longitude;
-            marker.setLatLng([lat, lng]).addTo(map);
-            map.setView([lat, lng], 15);
-            marker.bindPopup("You are here").openPopup();
-          },
-          () => {
-            alert("Could not get your location.");
-          }
-        );
-
-        setTimeout(() => {
-          map.invalidateSize();
-        }, 500);
-      }
-      var map = L.map("map");
       L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
         maxZoom: 19,
         attribution:
           '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
       }).addTo(map);
-      map.setView([36.2972, 59.6067], 15);
-      let marker = L.marker([36.2972, 59.6067]);
-      marker.bindPopup(locPopUp).openPopup();
-    </script>
 
-    <script>
+      // Create a marker for the car's current location
+      // Using an empty point initially, will be updated by fetchAndDisplayLocations
+      carMarker = L.marker(initialMapCenter).addTo(map);
+      carMarker.bindPopup("Car's Current Location").openPopup();
+
+      // Cache for geocoded locations to reduce API calls
+      const geocodeCache = {};
+
+      // Function to perform reverse geocoding using OpenStreetMap Nominatim
+      async function reverseGeocode(latitude, longitude) {
+        const cacheKey = `${latitude.toFixed(6)},${longitude.toFixed(6)}`;
+        if (geocodeCache[cacheKey]) {
+          return geocodeCache[cacheKey]; // Return from cache if available
+        }
+
+        const nominatimUrl = `https://nominatim.openstreetmap.org/reverse?format=json&lat=${latitude}&lon=${longitude}&zoom=18&addressdetails=1`;
+
+        try {
+          // Important: Nominatim asks for a polite user-agent.
+          // In a browser environment, fetch typically handles this, but for a server-side
+          // request or if you were making many requests quickly, you'd need to add headers.
+          // For frontend usage, this is generally fine for moderate use.
+          const response = await fetch(nominatimUrl);
+          const data = await response.json();
+          const locationName = data.display_name || "Unknown Location";
+          geocodeCache[cacheKey] = locationName; // Store in cache
+          return locationName;
+        } catch (error) {
+          console.error("Error during Nominatim reverse geocoding:", error);
+          return "Error Fetching Location Name";
+        }
+      }
+
+      // Function to fetch and display car locations
+      async function fetchAndDisplayLocations() {
+        try {
+          const response = await fetch("/locations"); // Fetch from your Flask backend
+          const locations = await response.json();
+
+          if (locations.length === 0) {
+            console.log("No car location data available.");
+            document.getElementById("visitedLocationsList").innerHTML =
+              "<li>No location history available.</li>";
+            return;
+          }
+
+          // Extract coordinates for the polyline
+          const latlngs = locations.map((loc) => [loc.latitude, loc.longitude]);
+
+          // Update the polyline
+          if (polyline) {
+            map.removeLayer(polyline); // Remove old polyline if exists
+          }
+          polyline = L.polyline(latlngs, { color: "red", weight: 5 }).addTo(
+            map
+          );
+
+          // Update the car's current location marker to the latest point
+          const latestLocation = locations[locations.length - 1];
+          carMarker.setLatLng([
+            latestLocation.latitude,
+            latestLocation.longitude,
+          ]);
+          carMarker.setPopupContent(
+            `Car's Current Location<br>(${latestLocation.latitude.toFixed(
+              4
+            )}, ${latestLocation.longitude.toFixed(
+              4
+            )})<br>Last Updated: ${new Date(
+              latestLocation.timestamp
+            ).toLocaleString()}`
+          );
+
+          // Optionally center the map on the latest location when it moves significantly
+          // map.setView([latestLocation.latitude, latestLocation.longitude], map.getZoom());
+
+          console.log("Map updated with new locations and polyline.");
+
+          // --- Update the visited locations list ---
+          const locationsListElement = document.getElementById(
+            "visitedLocationsList"
+          );
+          locationsListElement.innerHTML = ""; // Clear previous list
+
+          // To avoid too many API calls, geocode only the last few unique locations
+          const locationsToGeocode = [];
+          const uniqueLocations = new Set(); // Use a Set to track unique (lat,lng) pairs
+
+          // Iterate from newest to oldest, adding unique locations
+          for (
+            let i = locations.length - 1;
+            i >= 0 && locationsToGeocode.length < 10;
+            i--
+          ) {
+            const loc = locations[i];
+            const locString = `${loc.latitude.toFixed(
+              4
+            )},${loc.longitude.toFixed(4)}`; // Rough uniqueness
+            if (!uniqueLocations.has(locString)) {
+              locationsToGeocode.unshift(loc); // Add to the beginning to maintain chronological order
+              uniqueLocations.add(locString);
+            }
+          }
+
+          if (locationsToGeocode.length === 0) {
+            locationsListElement.innerHTML =
+              "<li>No unique recent locations to display.</li>";
+          } else {
+            for (const loc of locationsToGeocode) {
+              const locationName = await reverseGeocode(
+                loc.latitude,
+                loc.longitude
+              );
+              const listItem = document.createElement("li");
+              listItem.innerHTML = `<strong>${new Date(
+                loc.timestamp
+              ).toLocaleString()}</strong>: ${locationName} <em>(${loc.latitude.toFixed(
+                4
+              )}, ${loc.longitude.toFixed(4)})</em>`;
+              locationsListElement.appendChild(listItem);
+            }
+          }
+          // --- End New List Update ---
+        } catch (error) {
+          console.error("Error fetching car locations:", error);
+        }
+      }
+
+      // Initial load of locations
+      fetchAndDisplayLocations();
+
+      // Refresh locations every 10 seconds (adjust as needed)
+      setInterval(fetchAndDisplayLocations, 10000); // 10 seconds for real-time like updates
+
+      // Music player script (kept as is)
       const audio = document.getElementById("myAudio");
       const image = document.getElementById("audioImage");
 
@@ -293,66 +234,9 @@
         isPlaying = !isPlaying;
       });
 
-      // Optional: update isPlaying if audio ends
       audio.addEventListener("ended", () => {
         isPlaying = false;
       });
-    </script>
-
-    <script>
-      document
-        .getElementById("signup-form")
-        .addEventListener("submit", async function (e) {
-          e.preventDefault();
-
-          const username = document.getElementById("username-input").value;
-          const email = document.getElementById("email-input").value;
-          const password = document.getElementById("password-input").value;
-
-          try {
-            const response = await fetch("http://127.0.0.1:8000/users", {
-              method: "POST",
-              headers: { "Content-Type": "application/json" },
-              body: JSON.stringify({ username, email, password }),
-            });
-
-            if (response.ok) {
-              alert("Signup successful!");
-            } else {
-              alert("Signup failed!");
-            }
-          } catch (err) {
-            alert("Error: " + err.message);
-          }
-        });
-    </script>
-    <script>
-      document
-        .getElementById("login-form")
-        .addEventListener("submit", async function (e) {
-          e.preventDefault();
-
-          const username = document.getElementById("login-username").value;
-          const password = document.getElementById("login-password").value;
-
-          try {
-            const res = await fetch("http://127.0.0.1:8000/login", {
-              method: "POST",
-              headers: { "Content-Type": "application/json" },
-              body: JSON.stringify({ username, password }),
-            });
-
-            const data = await res.json();
-
-            if (res.ok) {
-              alert("✅ " + data.message);
-            } else {
-              alert("❌ " + data.error);
-            }
-          } catch (err) {
-            alert("Error: " + err.message);
-          }
-        });
     </script>
   </body>
 </html>

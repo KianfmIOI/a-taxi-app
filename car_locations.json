@@ -1,0 +1,52 @@
+[
+  {
+    "latitude": 36.2972,
+    "longitude": 59.6067,
+    "timestamp": "2025-06-14T10:00:00Z"
+  },
+  {
+    "latitude": 36.2965,
+    "longitude": 59.608,
+    "timestamp": "2025-06-14T11:00:00Z"
+  },
+  {
+    "latitude": 36.2878,
+    "longitude": 59.6056,
+    "timestamp": "2025-06-14T12:00:00Z"
+  },
+  {
+    "latitude": 36.2758,
+    "longitude": 59.5786,
+    "timestamp": "2025-06-14T13:00:00Z"
+  },
+  {
+    "latitude": 36.3769,
+    "longitude": 59.4005,
+    "timestamp": "2025-06-14T14:00:00Z"
+  },
+  {
+    "latitude": 36.4251,
+    "longitude": 59.39,
+    "timestamp": "2025-06-14T15:00:00Z"
+  },
+  {
+    "latitude": 36.3769,
+    "longitude": 59.4005,
+    "timestamp": "2025-06-14T16:00:00Z"
+  },
+  {
+    "latitude": 36.2972,
+    "longitude": 59.6067,
+    "timestamp": "2025-06-14T17:00:00Z"
+  },
+  {
+    "latitude": 36.2975,
+    "longitude": 59.607,
+    "timestamp": "2025-06-14T18:00:00Z"
+  },
+  {
+    "latitude": 36.297,
+    "longitude": 59.6065,
+    "timestamp": "2025-06-14T19:00:00Z"
+  }
+]
